@@ -40,13 +40,6 @@ public class HomeController {
  {
 	 return "hi";
  }
-// @PostMapping("/addrequest")
-//	public ResponseEntity addrequest(@RequestBody Request request)
-//	{
-//		rdao.save(request);
-//		return new ResponseEntity("request added",HttpStatus.OK);
-//	}
- 
  @PostMapping("/adduser")
  public String adduser(@RequestBody Employee employee)
  {
@@ -90,77 +83,12 @@ public class HomeController {
      
      return pages.getContent();
  }
- 
-// @GetMapping("/field")
-// private APIResponse<List<Request>> getproductWithSort(@PathVariable String filed)
-// {
-//   List<Request> allrequest=rdao.findProductWithSorting();
-//   return new APIResponse<>(allrequest.size(),allrequest);
-// } 
-   
-//    @PostMapping
 	@GetMapping("findbyid/{id}")
 	public Request getReq(@PathVariable int id)
 	{
 		Request request=rdao.findById(id).get();
 		return request;
 	}
-//    @GetMapping("findbydept/{dept}")
-//    public Request getdept(@PathVariable String dept)
-//    {
-//    	Request request = edao.findByDept(dept);
-//    	return request;
-//    }
-//  @GetMapping("/filterrequest/{empId}")
-//  public List<Employee> filterTodosById(@RequestBody Employee employee){
-//      List<Employee> todos1 = edao.filterTodosByEmployeeId(employee);
-//      return todos1;
-//  }
-//    
-// @GetMapping("/previousandcurretrequests")
-// public List<Request> requestdatewise(@RequestBody Employee employee)
-// {
-//	   Pageable pageable = new PageRequest(0, 10, new Sort(Sort.Direction.ASC, "date"));
-//
-//	   Page<Request> topPage = rdao.findByRequestDate(date, pageable);
-//	   List<Request> topUsersList = topPage.getContent();
-//	   return topUsersList;
-// }
- 
-
-// @GetMapping("/filter")
-// public ResponseEntity<List<Request>> getAllRequests(
-//                     @RequestParam(defaultValue = "0") Integer pageNo, 
-//                     @RequestParam(defaultValue = "10") Integer pageSize,
-//                     @RequestParam(defaultValue = "id") String sortBy) 
-// {
-//     List<Request> list = rdao.getAllRequests(pageNo, pageSize, sortBy);
-//
-//     return new ResponseEntity<List<Request>>(list, new HttpHeaders(), HttpStatus.OK); 
-// }
-// 
-// @GetMapping("/filterrequest/{reqId}")
-// public List<Request> filterTodosById(@RequestBody Request request){
-//     List<Request> todos = rdao.filterTodosByUserId(request);
-//     return todos;
-// }
-// @GetMapping("/filterrequest/{empId}")
-// public List<Request> filterTodosById1(@RequestBody Request request){
-//     List<Request> todos1 = rdao.filterTodosByUserId(request);
-//     return todos1;
-// }
-// @GetMapping("/filterrequest/{dept}")
-// public List<Request> filterTodosById2(@RequestBody Request request){
-//     List<Request> todos2 = rdao.filterTodosByDept(request);
-//     return todos2;
-// }
-// @GetMapping("/filterrequest/{date}")
-// public List<Request> filterByDate(@RequestBody Request request)
-// {
-//	 List<Request> bydate = rdao.filterTodosByDate(request);
-//	 return bydate;
-// }
- 
  
  
  

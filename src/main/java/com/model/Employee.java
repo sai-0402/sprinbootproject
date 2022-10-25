@@ -15,7 +15,7 @@ public class Employee {
 	
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long empId;
+    private int empId;
     private String name;
     private String username;
     private String password;
@@ -39,4 +39,12 @@ public class Employee {
 	public Employee() {
 		super();
 	}
-}
+
+//	public Employee get() {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
+
+	
+
+		}

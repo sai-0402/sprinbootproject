@@ -14,37 +14,41 @@ import com.dao.RequestDao;
 import com.model.Employee;
 import com.model.Request;
 
-//@SpringBootTest 
-//public class TestCase {
-//	   @Autowired 
-//	   RequestDao rdao;
-//	   @Autowired 
-//	   EmployeeDao edao;
-//       @Test
-//       void test() {
-//    	   Request req = new Request();
-//    	   req.setReqId(0);
-//    	   req.setNotes(null);
-//    	   req.setEmployee(null);
-//    	   req.setNotes(null);
-//    	   req.setReqType(null);
-//    	   req.setEmployee(null);
-//    	   req.setDate(null);
-//    	   rdao.save(req);
-//    	   Request req1=rdao.findById(req.getReqId()).get();
-//    	   Assertions.assertEquals(req.getReqId(),req.getReqId()); 
-//       } 
-//      @Test
-//      void test1()
-//      {
-//    	  Employee emp = new Employee();
-//    	  emp.setEmpId(1);
-//    	  emp.setDept(null);
-//    	  emp.setName(null);
-//    	  emp.setPassword(null);
-//    	  emp.setRequest(null);
-//    	  emp.setDevice(null);
-//    	  edao.save(emp);
-//    	  
-//      }
-//}
+@SpringBootTest 
+public class TestCase {
+	   @Autowired 
+	   RequestDao rdao;
+	   @Autowired 
+	   EmployeeDao edao;
+      @Test
+      void test1()
+      {
+    	  Employee emp = new Employee();
+    	  emp.setEmpId(1);
+    	  emp.setDepartment(null);
+    	  emp.setName(null);
+    	  emp.setPassword(null);
+    	  emp.setRequest(null);
+    	  emp.setDevice(null);
+    	  edao.save(emp);
+      }
+      @Test
+      void test()
+      {
+    	  Request req = new Request();
+    	  req.setEmpId(null);
+    	  req.setRequestId(0);
+    	  req.setRequestType(null);
+    	  req.setDate(null);
+    	  req.setStatus(null);
+    	  rdao.save(req);
+      }
+      
+      
+      
+      
+      
+      
+      
+      
+}
