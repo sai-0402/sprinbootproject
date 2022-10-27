@@ -1,5 +1,6 @@
 package com.model;
 
+import java.sql.Date;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -20,16 +21,11 @@ public class Request {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int requestId;
-    @ManyToOne
-    @JoinColumn(name = "emp_id")
-    private Employee empId;
+    @ManyToOne(fetch=FetchType.EAGER)
+    @JoinColumn(name = "fk_employee_id")
+    private Employee employee;
     private String status;
     private String requestType;
-    private LocalDate date;  // Create a date object
-    public Request(int requestId, Employee empId, String requestType) {
-        this.requestId = requestId;
-        this.empId = empId;
-        this.requestType = requestType;
-    }
-    
+    private Date date;  // Create a date object
+
 }

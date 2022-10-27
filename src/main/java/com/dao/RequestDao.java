@@ -16,7 +16,12 @@ import com.model.Request;
 @Repository
 public interface RequestDao extends JpaRepository<Request,Integer> {
 
-	List<Request> findByDate(LocalDate date);
+	List<Request> findByDate(java.sql.Date date);
+
+	//List<Request> findByDepartment(String department);
+
+
+	//List<Request> findByDepartment(String department);
 
 	//List<Request> findByDateBetween(Date start, Date end);
 	

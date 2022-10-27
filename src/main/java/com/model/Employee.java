@@ -6,10 +6,16 @@ import javax.persistence.*;
 import com.model.Request;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 
-@Data
+@Getter
+@Setter
+@AllArgsConstructor
 @Entity
 public class Employee {
 	
@@ -21,7 +27,8 @@ public class Employee {
     private String password;
     private String email;
     private String department;
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(mappedBy="employee")
+    @JsonIgnore
     private List<Request> request;
     private String device;
     

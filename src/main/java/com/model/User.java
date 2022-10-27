@@ -8,8 +8,11 @@ import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
 import lombok.Data;
+import lombok.*;
 
-@Data
+@Getter
+@Setter
+@NoArgsConstructor
 @Entity
 @Table(name = "users", uniqueConstraints = {
         @UniqueConstraint(columnNames = {"username"}),
@@ -24,7 +27,4 @@ public class User {
     private String username;
     private String email;
     private String password;
-
-    
 }
-

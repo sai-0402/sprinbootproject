@@ -21,9 +21,13 @@ public interface EmployeeDao extends JpaRepository<Employee,Integer>{
 
 	Employee findByAddress(String address);
 
-	Employee findByDepartment(String department);
+	//Employee findByDepartment(String department);
 
 	Employee findByEmail(String email);
+
+	Employee findAllByDepartment(String department);
+
+
 
 
 	//Employee findByDate(Date date);

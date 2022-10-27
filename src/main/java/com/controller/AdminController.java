@@ -9,11 +9,17 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.controllerexp.NoSuchAddressException;
+import com.controllerexp.NoSuchDateException;
+import com.controllerexp.NoSuchDeptException;
+import com.controllerexp.NoSuchEmailException;
 import com.dao.AdminDao;
 import com.dao.EmployeeDao;
 import com.dao.RequestDao;
@@ -44,32 +50,55 @@ public class AdminController {
 //	  List<Request> request =edao.findById(empId).get().getRequest();
 //	  return request;
 //  }
+  
   @GetMapping("/getbydate/{date}")
-  public List<Request> getdate(@PathVariable LocalDate date)
+  public ResponseEntity<?> getbydate(@PathVariable("date") Date date) throws Exception
   {
+	  try {
 	  List<Request> request = rdao.findByDate(date);
-	  return request;
+	  if (request == null || request.isEmpty()) throw new Exception();
+	  
+	  return new ResponseEntity<List>(request, HttpStatus.OK);
   }
+	  catch(Exception e)
+	  {
+		  throw new NoSuchDateException();
+	  }
+  }
+  
   @GetMapping("/getdept/{department}")
-  public List<Request> getdept(@PathVariable String department)
+  public ResponseEntity<?> getdept(@PathVariable("department") String department)throws Exception
   {
-	  List<Request> request =  edao.findByDepartment(department).getRequest();
-	  return request;
+	  try {
+	  List<Request> request =  edao.findAllByDepartment(department).getRequest();
+      if (request == null || request.isEmpty()) throw new Exception();
+	  return new ResponseEntity<List>(request, HttpStatus.OK);
   }
+	  catch(Exception e)
+	  {
+		  throw new NoSuchDeptException();
+	  }
+  }
+  
   @GetMapping("/getlocation/{address}")
-  public List<Request> getloc(@PathVariable String address)
-  {
+  public ResponseEntity<?> getloc(@PathVariable("address") String address) throws Exception
+  {   try {
 	  List<Request> request =  edao.findByAddress(address).getRequest();
-	  return request;
+	  if (request == null || request.isEmpty()) throw new Exception();
+	  return new ResponseEntity<List>(request, HttpStatus.OK);
   }
+  catch(Exception e)
+  {
+	  throw  new NoSuchAddressException();
+  }
+  }
+  
   @GetMapping("/getemp/{username}")
   public List<Request> getuser(@PathVariable String username)
   {
 	  List<Request> request = edao.findByUsername(username).getRequest();
 	  return request;
   }
-  
-  
 //  @GetMapping("/filterby/{empId}")
 //  public List<Request> getReq(@PathVariable Request empId)
 //	{
@@ -78,14 +107,18 @@ public class AdminController {
 //	}
   
   @GetMapping("/getemailId/{email}")
-  public List<Request> getmail(@PathVariable String email)
+  public ResponseEntity<?> getemailId(@PathVariable("email") String email) throws Exception
   {   
+	  try {
 	  List<Request> request =edao.findByEmail(email).getRequest();
-	  return request;
+      if (request == null || request.isEmpty()) throw new Exception();
+	  
+	  return new ResponseEntity<List>(request, HttpStatus.OK);
   }
-  
-  
-  
-  
+  catch(Exception e)
+	  {
+	    throw new NoSuchEmailException();
+	  }
+  }
   
 }
